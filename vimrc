@@ -3,13 +3,14 @@ filetype plugin indent on
 
 " vim-plug plugin management!!!!!!!!!!!!
 call plug#begin('~/.local/share/nvim/plugged')
-Plug 'Shougo/deoplete.nvim'
+" Plug 'Shougo/deoplete.nvim'
 Plug 'flazz/vim-colorschemes'
 Plug 'itchyny/lightline.vim'
 Plug 'dense-analysis/ale'
+Plug 'fatih/vim-go'
 call plug#end()
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
+"let g:deoplete#enable_at_startup = 1
 " Colorscheme!!!!
 colorscheme gruvbox
 
@@ -94,6 +95,13 @@ endfunc
 
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+" Remember folds
+augroup remember_folds
+    autocmd!
+    autocmd BufWinLeave ?* mkview | filetype detect
+    autocmd BufWinEnter ?* silent loadview | filetype detect
+augroup END
 
 " Adjust settings for .xml files -- This totally fucks up in neovim
 "au FileType xml exe ":silent %!xmllint --format --recover - 2>/dev/null"
