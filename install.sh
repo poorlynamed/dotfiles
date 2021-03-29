@@ -1,13 +1,11 @@
 #!/bin/bash
 
 backupDir=~/.dotfiles_backup-$(date +'%s')
-configFiles=("zshrc" "bashrc" "vimrc" "tmux.conf" "screenrc")
-
-printf -- "-- backing up any pre-existing configs to %s\n" "$backupDir"
 mkdir $backupDir || exit 1
-for cfgFile in ${cfgFiles[@]}; do
+
+for cfgFile in $(ls -ap | grep -Ev '/|^\.|install.sh|bootstrap.sh'); do
   [[ -e ~/.$cfgFile ]] && mv ~/.$cfgFile $backupDir/$cfgFile
+  cp $cfgFile ~/.$cfgfile
 done
 
-echo "-- copying configs to home directory"
-for cfgFile in ${cfgFiles[@]};do cp $cfgFile ~;done
+printf -- "done -- original configs backed up to %s\n" "$backupDir"
