@@ -7,8 +7,7 @@ BLUE=$(tput setaf 4)
 RESET=$(tput sgr0)
 
 # Prompt
-export PS1=" $BLUE\W$RESET > "
-export PROMPT_COMMAND=git_prompt_update
+export PS1="\[$BLUE\]\W\[$RESET\] > "
 
 GBRANCH=''
 UNMODIFIED_PS1="$PS1"
@@ -21,13 +20,16 @@ git_prompt_update() {
         GBRANCH="$(git branch -a | grep '\*' | cut -d' ' -f2)"
         if [[ ! "$PS1" =~ $GBRANCH ]]
         then
-            export PS1=" ($RED$GBRANCH$RESET)$PS1"
+            export PS1="(\[$RED\]$GBRANCH\[$RESET\]) $PS1"
         fi
     else
         GBRANCH=''
         export PS1="$UNMODIFIED_PS1"
     fi
 }
+
+export PROMPT_COMMAND=git_prompt_update
+
 
 # Colored man pages! (shout-out to rwxrob)
 export LESS_TERMCAP_mb="[35m"
