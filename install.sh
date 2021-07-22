@@ -11,8 +11,17 @@ for cfgFile in *; do
   [[ $cfgFile =~ (install.sh|bootstrap.sh|.git|.gitignore) ]] && continue
 
   # if dotfile exists in home dir, move it to backup folder
-  [[ -f $HOME/.$cfgFile ]] && mv "$HOME/.$cfgFile" "$backupDir/$cfgFile"
-  cp "$cfgFile" "$HOME/.$cfgFile" && printf "Copied ~/.%s\n" "$cfgFile"
+  if [[ $OSTYPE =~ "darwin"* ]] && [[ $cfgFile =~ bashrc ]]; then
+    [[ -f $HOME/.bash_profile ]] && mv "$HOME/.bash_profile" "$backupDir/bash_profile"
+  else
+    [[ -f $HOME/.$cfgFile ]] && mv "$HOME/.$cfgFile" "$backupDir/$cfgFile"
+  fi
+
+  if [[ $OSTYPE =~ "darwin"* ]] && [[ $cfgFile =~ bashrc ]]; then
+    cp "$cfgFile" "$HOME/.bash_profile" && printf "Copied ~/.%s\n" "bash_profile"
+  else
+    cp "$cfgFile" "$HOME/.$cfgFile" && printf "Copied ~/.%s\n" "$cfgFile"
+  fi
 done
 
 printf -- "done -- original configs backed up to %s\n" "$backupDir"

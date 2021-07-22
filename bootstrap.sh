@@ -2,7 +2,7 @@
 #shellcheck disable=2068
 
 osxPkgs=('git' 'neovim' 'nodejs' 'npm' 'golang' 'viscosity' 'tmux' 'lulu' 'rectangle'                 \
-         'easy-move-plus-resize' 'firefox' 'docker' 'coreutils' 'wget' 'weechat' 'zsh')
+         'easy-move-plus-resize' 'firefox' 'docker' 'coreutils' 'wget' 'weechat')
 
 linuxPkgs=('git' 'neovim' 'nodejs' 'npm' 'golang' 'tmux' 'docker' 'coreutils' 'wget' 'weechat' 'zsh')
 
@@ -23,9 +23,5 @@ linuxPkgs=('git' 'neovim' 'nodejs' 'npm' 'golang' 'tmux' 'docker' 'coreutils' 'w
   grep -iq 'Pop!_OS' /etc/issue && apt install -y ${linuxPkgs[@]} bind9utils build-essential;         \
   grep -iq arch /etc/issue && apt install -y ${linuxPkgs[@]} base-devel;                              \
 }
-
-printf 'installing oh-my-zsh for user: %s\n' "$SUDO_USER"
-sudo -u "$SUDO_USER" -H \
-  sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 
 exit 0
