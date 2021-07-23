@@ -18,9 +18,9 @@ git_prompt_update() {
     if [[ ! "$git_check" =~ fatal ]]
     then
         GBRANCH="$(git branch -a | grep '\*' | cut -d' ' -f2)"
-        if [[ ! "$PS1" =~ $GBRANCH ]]
+        if [[ ! "$PS1" == *\(*\)* ]]
         then
-            export PS1="(\[$RED\]$GBRANCH\[$RESET\]) $PS1"
+            export PS1="(\[$RED\]$GBRANCH\[$RESET\]) $UNMODIFIED_PS1"
         fi
     else
         GBRANCH=''
