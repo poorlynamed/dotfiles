@@ -97,10 +97,10 @@ shellcolors() {
   local STYLE="38;5"
   for COLOR in {0..255}
   do
-    TAG="\[\e[$STYLE;${COLOR}m\]"
-    STR="$STYLE;$COLOR"
-    echo -ne "$TAG$STR$NONE "
+    TAG="\e[$STYLE;${COLOR}m"
+    echo -ne "$TAG${COLOR}$NONE "
   done
+  echo
 }
 
 isodate() {
