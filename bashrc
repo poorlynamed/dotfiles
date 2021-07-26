@@ -1,5 +1,5 @@
 # make macos shut up about zsh
-test -d "$OSTYPE" =~ darwin* && export BASH_SILENCE_DEPRECATION_WARNING=1
+[[ "$OSTYPE" =~ darwin* ]] && export BASH_SILENCE_DEPRECATION_WARNING=1
 
 # emacs mode is for people who don't know about ctrl+[ as escape
 # (also cmd history search with slash)
@@ -32,7 +32,7 @@ __ps1() {
   then
     if [[ ! "$PS1" == *\(*\)* ]]
     then
-      export PS1="(\[$RED\]$(git branch -a | grep '\*' | cut -d' ' -f2)\[$RESET\]) $PS1"
+      export PS1="($lr$(git branch -a | grep '\*' | cut -d' ' -f2)$x) $PS1"
     fi
   fi
 }
