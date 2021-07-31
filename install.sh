@@ -7,6 +7,12 @@ backupDir="$HOME/.dotfiles_backup-$(date +'%s')"
 mkdir "$backupDir" || exit 1
 
 for cfgFile in *; do
+  # populate neovim init file since it's just pointed to ~/.vimrc anyway
+  mkdir -p "$HOME/.config/nvim"
+  echo 'set runtimepath^=~/.vim runtimepath+=~/.vim/after
+  let &packpath = &runtimepath
+  source ~/.vimrc' > "$HOME/.config/nvim/init.vim"
+
   # skip dotfiles & install/bootstrap scripts
   [[ $cfgFile =~ (install.sh|bootstrap.sh|.git|.gitignore) ]] && continue
 
