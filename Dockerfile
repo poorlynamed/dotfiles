@@ -58,5 +58,5 @@ RUN nvim --headless +PlugInstall +qall
 RUN pip3 install -U neovim
 
 # CoC nvim language completion packages
-RUN nvim --headless +'CocInstall -sync coc-markdownlint coc-tsserver coc-json coc-html coc-css coc-pyright coc-go coc-sh coc-clangd coc-cmake sql-language-server'   +qall
+RUN nvim --headless +'CocInstall -sync coc-explorer coc-markdownlint coc-tsserver coc-json coc-html coc-css coc-pyright coc-go coc-sh coc-clangd coc-cmake sql-language-server'   +qall
 

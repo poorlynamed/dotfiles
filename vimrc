@@ -61,9 +61,7 @@ set softtabstop=2
 set splitbelow
 set splitright
 set tabstop=2
-set timeoutlen=50
 set title
-set updatetime=100
 set wildignore=*.o,*~,*.pyc
 set wildmenu
 
@@ -121,6 +119,8 @@ nnoremap <leader>v :vsplit<cr>
 nnoremap <leader>h :split<cr>
 nnoremap <leader>q :close<cr>
 
+" File Navigation
+nnoremap <leader>e <Cmd>CocCommand explorer<CR>
 
 " Automation
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -182,7 +182,10 @@ set completefunc=emoji#complete
 if has("termguicolors")
     set termguicolors
 endif
-colorscheme molokai_dark
+colorscheme ayu
+
+" lightline
+let g:lightline = {'colorscheme': 'apprentice'}
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Language-Specific Options
