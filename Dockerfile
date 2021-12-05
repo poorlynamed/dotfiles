@@ -50,7 +50,7 @@ COPY vimrc /home/dev/.config/nvim/init.vim
 
 ## Neovim setup
 # vim-plug
-RUN sh -c 'curl -fLo /home/dev/.local/share/nvim/site/autoload/plug.vim --create-dirs \
+RUN bash -c 'curl -fLo /home/dev/.local/share/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 RUN nvim --headless +PlugInstall +qall
 
@@ -58,5 +58,7 @@ RUN nvim --headless +PlugInstall +qall
 RUN pip3 install -U neovim
 
 # CoC nvim language completion packages
-RUN nvim --headless +'CocInstall -sync coc-explorer coc-markdownlint coc-tsserver coc-json coc-html coc-css coc-pyright coc-go coc-sh coc-clangd coc-cmake sql-language-server'   +qall
+RUN nvim --headless +'CocInstall -sync coc-explorer coc-markdownlint coc-tsserver coc-json coc-html coc-css coc-pyright coc-go coc-sh coc-clangd coc-cmake sql-language-server coc-explorer'   +qall
 
+# Chnage all permissions
+RUN bash -c 'chown -R dev:dev /home/dev'

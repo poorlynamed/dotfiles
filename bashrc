@@ -66,7 +66,7 @@ alias c=clear
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  if [ -r ~/.dircolors ];then eval "$(dircolors -b ~/.dircolors)";else eval "$(dircolors -b)";fi
   alias ls='ls --color=auto'
   #alias dir='dir --color=auto'
   #alias vdir='vdir --color=auto'
@@ -109,7 +109,7 @@ isodate() {
 
 # (shout-out to rwxrob)
 path() {
-  echo -e ${PATH//:/\\n}
+  echo -e "${PATH//:/\\n}"
 }
 
 # (shout-out to rwxrob)
@@ -151,8 +151,8 @@ HISTSIZE=30000
 HISTFILESIZE=50000
 
 # Let's not kid ourselves via nano
-EDITOR=vim
-VISUAL=vim
+export EDITOR=vim
+export VISUAL=vim
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
