@@ -94,13 +94,28 @@ ipcheck() {
 }
 
 shellcolors() {
-  local STYLE="38;5"
-  for COLOR in {0..255}
-  do
-    TAG="\e[$STYLE;${COLOR}m"
-    echo -ne "$TAG${COLOR}$NONE "
+  printf "NORMAL:\n\x1b[38;5;0mblack "
+  printf "\x1b[38;5;1mred "
+  printf "\x1b[38;5;2mgreen "
+  printf "\x1b[38;5;3myellow "
+  printf "\x1b[38;5;4mblue "
+  printf "\x1b[38;5;5mmagenta "
+  printf "\x1b[38;5;6mcyan "
+  printf "\x1b[38;5;7mwhite\n\n"
+
+  printf "BRIGHT:\n\x1b[38;5;8mblack "
+  printf "\x1b[38;5;9mred "
+  printf "\x1b[38;5;10mgreen "
+  printf "\x1b[38;5;11myellow "
+  printf "\x1b[38;5;12mblue "
+  printf "\x1b[38;5;13mmagenta "
+  printf "\x1b[38;5;14mcyan "
+  printf "\x1b[38;5;15mwhite\n\n256 COLOR:\n"
+
+  for i in {16..255}; do
+    printf "\x1b[38;5;${i}m%3d " "${i}"
+    if (( (i-15) % 12 == 0 ));then echo;fi
   done
-  echo
 }
 
 isodate() {
