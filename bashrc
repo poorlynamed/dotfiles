@@ -185,3 +185,4 @@ if test -x /usr/bin/lesspipe; then
 fi
 
 #pathappend /opt/homebrew/bin
+pathappend /usr/local/go/bin
